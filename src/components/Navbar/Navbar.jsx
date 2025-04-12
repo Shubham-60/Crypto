@@ -44,11 +44,11 @@ function Navbar() {
 
   return (
     <div className='navbar'>
-        <Link to="/">
+        <Link to="/Crypto/">
           <img src={logo} alt="logo" className='logo' />
         </Link>
         <ul>
-            <Link to = "/"><li>Home</li></Link>
+            <Link to = "/Crypto/"><li>Home</li></Link>
             <li>Features</li>
             <li>Prizing</li>
             <li>Blog</li>
