@@ -1,8 +1,8 @@
 {
-    "version": 2,
-    "routes": [
-      { "handle": "filesystem" },
-      { "src": "/coin/[^/]+", "dest": "/" },
-      { "src": "/(.*)", "dest": "/" }
-    ]
-  }
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
