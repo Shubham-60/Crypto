@@ -64,7 +64,7 @@ function Home() {
           </div>
           {coinstatus ? <p className='loading'>Loading...</p> :
             displaycoin.slice(0,10).map((coin,index) => (
-              <Link to={`/Crypto/coin/${coin.id}`} className='table-layout' key={index}>
+              <Link to={`/coin/${coin.id}`} className='table-layout' key={index}>
                 <p>{coin.market_cap_rank}</p>
                 <div>
                   <img src = {coin.image} alt='coin image'></img>

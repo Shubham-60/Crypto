@@ -10,8 +10,8 @@ function App() {
     <div className='app'>
       <Navbar />
       <Routes>
-        <Route path='/Crypto' element={<Home/>} />
-        <Route path='Crypto/coin/:coinID' element={<Coin/>} />
+        <Route path='/' element={<Home/>} />
+        <Route path='/coin/:coinID' element={<Coin/>} />
       </Routes>
       <Footer />
     </div>
