@@ -62,7 +62,7 @@ function Home() {
             <p style={{textAlign:'center'}}>24H Change</p>
             <p className='market-cap'>Market Cap</p>
           </div>
-          {coinstatus ? <p className='loading'>Loading...</p> :
+          {coinstatus ? <div className="loading-spinner"></div> :
             displaycoin.slice(0,10).map((coin,index) => (
               <Link to={`/coin/${coin.id}`} className='table-layout' key={index}>
                 <p>{coin.market_cap_rank}</p>
