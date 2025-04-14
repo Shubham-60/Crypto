@@ -50,8 +50,8 @@ function Navbar() {
         <ul>
             <Link to = "/"><li>Home</li></Link>
             <li>Features</li>
-            <li>Prizing</li>
-            <li>Blog</li>
+            <Link to = "/Price"><li>Prizing</li></Link>
+            <li><a href='https://www.coindesk.com/?roistat_visit=2428161'>Blog</a></li>
         </ul>
         <div className='navbar-btn'>
             <select className='currency' onChange={currencyHandler}>
