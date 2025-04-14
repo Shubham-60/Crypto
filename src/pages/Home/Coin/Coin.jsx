@@ -42,7 +42,7 @@ function Coin() {
   useEffect(() => {
     fetchcoindata()
     fetchcoingraph()
-  },[currency])
+  },[currency,coinID])
 
   if (coindata && coingraph && coingraph.prices){
     return (
