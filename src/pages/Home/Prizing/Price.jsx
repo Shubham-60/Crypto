@@ -1,53 +1,24 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, {useState, useContext } from 'react';
 import './Price.css';
 import { CoinContext } from '../../../context/CoinContext';
 import { Link } from 'react-router-dom';
+
 function Price() {
-    const [bitcoinData, setBitcoinData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [visibleCoins, setVisibleCoins] = useState(12); // Initially show 12 coins
-    const { currency } = useContext(CoinContext);
-
-    // Fetch Bitcoin data from the API
-    function fetchcoin() {
-        setLoading(true);
-        const options = {
-            method: 'GET',
-            headers: { accept: 'application/json', 'x-cg-demo-api-key': 'CG-wDFZ1WGvofmkUttwASYFRQje' },
-        };
-
-        fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency?.name || 'usd'}`, options)
-            .then((res) => res.json())
-            .then((data) => {
-                setBitcoinData(data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                console.error('Error fetching Bitcoin data:', err);
-                setLoading(false);
-            });
-    }
-    
-
-    useEffect(() => {
-        fetchcoin();
-    }, [currency]);
+    const { currency ,allcoin} = useContext(CoinContext);
 
     // Function to show more coins
     const showMoreCoins = () => {
         setVisibleCoins(prev => prev + 12);
     };
 
-    if (loading) {
-        return <div className="loading-spinner"></div>;
-    }
-
     return (
         <div className='main-price'>
             <h1 className='title'>Coins Prices</h1>
             <div className="price-container">
-                {Array.isArray(bitcoinData) && bitcoinData.length > 0 ? (
-                    bitcoinData.slice(0, visibleCoins).map((coin) => (
+                {Array.isArray(allcoin) && allcoin.length > 0 ? (
+                    allcoin.slice(0, visibleCoins).map((coin) => (
                         <Link 
                             to={`/coin/${coin.id}`} 
                             key={coin.id} 
@@ -76,7 +47,7 @@ function Price() {
             </div>
             
             {/* Show More Button */}
-            {visibleCoins < bitcoinData.length && (
+            {visibleCoins < allcoin.length && (
                 <div className="show-more-container">
                     <button className="show-more-button" onClick={showMoreCoins}>
                         Show More
