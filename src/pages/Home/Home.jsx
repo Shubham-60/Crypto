@@ -54,31 +54,38 @@ function Home() {
 
             </form>
         </div>
-        <div className='cryp-table'>
-          <div className='table-layout'>
-            <p>#</p>
-            <p>Coin</p>
-            <p>Price</p>
-            <p style={{textAlign:'center'}}>24H Change</p>
-            <p className='market-cap'>Market Cap</p>
+        {coinstatus ? (
+          <div className='loading'>
+            <div className='loading-spinner'></div>
+            <p>Loading cryptocurrency data...</p>
           </div>
-          {coinstatus ? <div className="loading-spinner"></div> :
-            displaycoin.slice(0,10).map((coin,index) => (
-              <Link to={`/coin/${coin.id}`} className='table-layout' key={index}>
-                <p>{coin.market_cap_rank}</p>
-                <div>
-                  <img src = {coin.image} alt='coin image'></img>
-                  <p>{coin.name +" - "+coin.symbol}</p>
-                </div>
-                <p>{currency.symbol} {coin.current_price.toLocaleString()}</p>
-                <p className={coin.price_change_percentage_24h > 0 ? "green":"red"}>
-                  {Math.floor(coin.price_change_percentage_24h*100)/100 + " %"}
-                </p>
-                <p className='market-cap'>{currency.symbol} {coin.market_cap.toLocaleString()}</p>
-              </Link>
-            ))
-          }
+        ) : (
+          <div className='cryp-table'>
+            <div className='table-layout'>
+              <p>#</p>
+              <p>Coin</p>
+              <p>Price</p>
+              <p style={{textAlign:'center'}}>24H Change</p>
+              <p className='market-cap'>Market Cap</p>
+            </div>
+            {
+              displaycoin.slice(0,10).map((coin,index) => (
+                <Link to={`/coin/${coin.id}`} className='table-layout' key={index}>
+                  <p>{coin.market_cap_rank}</p>
+                  <div>
+                    <img src = {coin.image} alt='coin image'></img>
+                    <p>{coin.name +" - "+coin.symbol}</p>
+                  </div>
+                  <p>{currency.symbol} {coin.current_price.toLocaleString()}</p>
+                  <p className={coin.price_change_percentage_24h > 0 ? "green":"red"}>
+                    {Math.floor(coin.price_change_percentage_24h*100)/100 + " %"}
+                  </p>
+                  <p className='market-cap'>{currency.symbol} {coin.market_cap.toLocaleString()}</p>
+                </Link>
+              ))
+            }
         </div>
+        ) }
     </div>
   )
 }
